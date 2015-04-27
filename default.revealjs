@@ -14,6 +14,7 @@ $endif$
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" href="$revealjs-url$/css/reveal.css"/>
+  <link rel="stylesheet" href="css/custom.css"/>
   <style type="text/css">code{white-space: pre;}</style>
 $if(highlighting-css)$
   <style type="text/css">
@@ -61,6 +62,7 @@ $if(title)$
 $if(subtitle)$
   <h1 class="subtitle">$subtitle$</h1>
 $endif$
+<hr>
 $for(author)$
     <h2 class="author">$author$</h2>
 $endfor$
@@ -86,7 +88,7 @@ $body$
       // Full list of configuration options available here:
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
-        controls: true,         // Display controls in the bottom right corner
+        controls: $if(controls)$$controls$$else$true$endif$,         // Display controls in the bottom right corner
         progress: true,         // Display a presentation progress bar
         history: true,          // Push each slide change to the browser history
         center: $if(center)$$center$$else$true$endif$,                       // Vertical centering of slides
@@ -100,6 +102,9 @@ $body$
           { src: '$revealjs-url$/lib/js/classList.js', condition: function() { return !document.body.classList; } },
           { src: '$revealjs-url$/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
           { src: '$revealjs-url$/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: '$revealjs-url$/plugin/toc-progress/toc-progress.js', async:
+          true, callback: function() { toc_progress.initialize(0, 0, $if(footer_title)$'$footer_title$'$else$''$endif$); toc_progress.create(); } },
+//          { src: '$revealjs-url$/plugin/title-footer/title-footer.js', async: true, callback: function() { title_footer.initialize(); } },
 //          { src: '$revealjs-url$/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; }, }
 //          { src: '$revealjs-url$/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
 ]});
