@@ -1,3 +1,8 @@
+% arara: pdflatex: {action: nonstopmode , draft: yes, options: "-file-line-error"}
+% arara: bibtex
+% arara: pdflatex: {action: nonstopmode, draft: yes, options: "-file-line-error"}
+% arara: pdflatex: {action: nonstopmode, synctex: yes, options: "-file-line-error"}
+
 \documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$babel-lang$,$endif$$if(papersize)$$papersize$paper,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
 $if(fontfamily)$
 \usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
